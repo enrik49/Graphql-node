@@ -1,0 +1,20 @@
+{
+  "name": "Graphql-node",
+  "version": "1.0.0",
+  "description": "Graphql-node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enrik49/Graphql-node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enrik49/Graphql-node/issues"
+  },
+  "homepage": "https://github.com/enrik49/Graphql-node#readme"
+}
