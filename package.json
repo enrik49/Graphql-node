@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/enrik49/Graphql-node/issues"
   },
-  "homepage": "https://github.com/enrik49/Graphql-node#readme"
+  "homepage": "https://github.com/enrik49/Graphql-node#readme",
+  "dependencies": {
+    "graphql-yoga": "^1.18.3"
+  }
 }
