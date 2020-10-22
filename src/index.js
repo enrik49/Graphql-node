@@ -6,23 +6,36 @@ let links = [{
     url: 'www.aaaa.com',
     description: 'Fullstack tutorial for GraphQL'
   }]
+let idCount = links.length
+
+
 
 const resolvers = {
     Query: {
         info:() => `This is the API`,
         feed: () => links,
+        link: (parent, args) => {
+            console.log(links);
+            console.log(args.id);
+            return links.find(element => element.id == args.id)
+        },
     },
 
-    Link:{
-        id: (parent) => parent.id,
-        description: (parent) => parent.description,
-        url: (parent) => parent.url,
+    Mutation:{
+        post: (parent, args) => {
+            const link = {
+                id: `link-${idCount++}`,
+                url: args.url,
+                description: args.description
+            }
+            links.push(link)
+            return link
+        }
     }
-
 }
 
 const server = new GraphQLServer({
-    typeDefs: './src/shcema.graphql',
+    typeDefs: './src/schema.graphql',
     resolvers
 });
 
