@@ -5,6 +5,11 @@ let links = [{
     id: 'link-0',
     url: 'www.aaaa.com',
     description: 'Fullstack tutorial for GraphQL'
+  },
+  {
+    id: 'link-1',
+    url: 'www.aaaa.com',
+    description: 'Fullstack tutorial for GraphQL'
   }]
 let idCount = links.length
 
@@ -13,10 +18,10 @@ let idCount = links.length
 const resolvers = {
     Query: {
         info:() => `This is the API`,
+        
         feed: () => links,
+        
         link: (parent, args) => {
-            console.log(links);
-            console.log(args.id);
             return links.find(element => element.id == args.id)
         },
     },
@@ -30,7 +35,16 @@ const resolvers = {
             }
             links.push(link)
             return link
-        }
+        },
+
+        updateLink: (parent, args) => {
+            const index = links.findIndex(element => element.id == args.id)
+            if (args.description) 
+                links[index].description = args.description
+            if (args.url) 
+                links[index].url = args.url
+            return links.find(element => element.id == args.id)
+        },
     }
 }
 
