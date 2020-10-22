@@ -19,6 +19,10 @@
   },
   "homepage": "https://github.com/enrik49/Graphql-node#readme",
   "dependencies": {
+    "@prisma/client": "^2.9.0",
     "graphql-yoga": "^1.18.3"
+  },
+  "devDependencies": {
+    "@prisma/cli": "^2.9.0"
   }
 }
