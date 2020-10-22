@@ -7,19 +7,6 @@ let links = [{
     description: 'Fullstack tutorial for GraphQL'
   }]
 
-const typeDefs = `
-    type Query {
-        info: String!
-        feed: [Link!]!
-    }
-
-    type Link{
-        id: ID!
-        description : String!
-        url: String!
-    }
-`
-
 const resolvers = {
     Query: {
         info:() => `This is the API`,
@@ -34,6 +21,9 @@ const resolvers = {
 
 }
 
-const server = new GraphQLServer({typeDefs,resolvers});
+const server = new GraphQLServer({
+    typeDefs: './src/shcema.graphql',
+    resolvers
+});
 
 server.start(() => console.log('Server is running on port 4000'))
