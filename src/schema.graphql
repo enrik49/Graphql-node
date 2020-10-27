@@ -22,7 +22,7 @@ type Link{
 
 type AuthPayload {
     token: String
-    user: user
+    user: User
 }
 
 type User {
