@@ -11,30 +11,38 @@ const resolvers = {
             return context.prisma.link.findMany()
         },
         
-        /*link: (parent, args) => {
-            return links.find(element => element.id == args.id)
-        },*/
+        link: (parent, args, context) => {
+            return context.prisma.link.findOne({
+                where:{id:parseInt(args.id)}
+            })
+        },
     },
 
     Mutation:{
-        post: (parent, args, context) => {
-            const newLink = context.prisma.link.create({
+        createLink: (parent, args, context) => {
+            return context.prisma.link.create({
                 data:{
                     url: args.url,
                     description: args.description
                 },
             })
-            return newLink
         },
 
-        /*updateLink: (parent, args) => {
-            const index = links.findIndex(element => element.id == args.id)
-            if (args.description) 
-                links[index].description = args.description
-            if (args.url) 
-                links[index].url = args.url
-            return links.find(element => element.id == args.id)
-        },*/
+        updateLink: (parent, args, context) => {
+            return context.prisma.link.update({
+                where: { id: parseInt(args.id)},
+                data: {
+                    description: args.description,
+                    url: args.url
+                }
+            })
+        },
+
+        deleteLink: (parent, args, context) => {
+            return context.prisma.link.delete({
+                where: { id: parseInt(args.id)}
+            })
+        }
     }
 }
 
