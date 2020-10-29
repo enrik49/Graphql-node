@@ -2,14 +2,20 @@ function info() {
     return `This is the API`;
 }
 
-function feed(parent, args, context, info){
+async function feed(parent, args, context, info){
     const where = args.filter ? {
         OR: [
             { description: { contains: args.filter }},
             { url: { contains: args.filter }},
         ],
     } : {}
-    return context.prisma.link.findMany(where,)
+    const links = await context.prisma.link.findMany({
+        where,
+        skip: args.skip,
+        take: args.take,
+    })
+
+    return links    
 }
         
 function link(parent, args, context, info){
