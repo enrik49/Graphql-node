@@ -16,17 +16,33 @@ function createLink(parent, args, context, info){
     return newLink
 }
 
-function updateLink(parent, args, context, info){
+async function updateLink(parent, args, context, info){
+    const userId = getUserId(context)
+    const user = await context.prisma.link.findOne({ where: {id : parseInt(args.id)}}).postedBy()
+
+    if(user.id != userId){
+        throw new Error('User invalid for change Link')
+    }
+
     return context.prisma.link.update({
-        where: { id: parseInt(args.id)},
+        where: { 
+            id: parseInt(args.id)
+        },
         data: {
             description: args.description,
             url: args.url
-        }
+        },
     })
 }
 
-function deleteLink(parent, args, context, info){
+async function deleteLink(parent, args, context, info){
+    const userId = getUserId(context)
+    const user = await context.prisma.link.findOne({ where: {id : parseInt(args.id)}}).postedBy()
+
+    if(user.id != userId){
+        throw new Error('User invalid for change Link')
+    }
+
     return context.prisma.link.delete({
         where: { id: parseInt(args.id)}
     })
